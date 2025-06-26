@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#game-container {
+    position: relative;
+    border: 2px solid #333;
+}
+
+canvas {
+    background-color: #fff;
+    display: block;
+}
+
+#game-over-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#info {
+    margin-top: 20px;
+    font-size: 1.2em;
+}

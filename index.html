@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>똥피하기 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>똥피하기 게임</h1>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="480" height="640"></canvas>
+        <div id="game-over-screen" style="display: none;">
+            <h2>게임 오버</h2>
+            <p>최종 점수: <span id="final-score">0</span></p>
+            <p>스페이스 바를 누르면 다시 시작합니다.</p>
+        </div>
+    </div>
+    <div id="info">
+        <p>점수: <span id="score">0</span></p>
+        <p>목숨: <span id="lives">3</span></p>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
