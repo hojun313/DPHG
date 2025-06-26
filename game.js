@@ -25,9 +25,7 @@ const obstacles = [];
 const obstacleProps = {
     width: 30,
     height: 30,
-    speed: 2,
-    gravity: 0.05,
-    spawnRate: 1000 // ms
+    // speed, gravity, and spawnRate are now dynamic based on score
 };
 
 let obstacleSpawnTimer = 0;
@@ -57,21 +55,30 @@ function updatePlayer() {
 }
 
 function updateObstacles() {
+    // Dynamic difficulty based on score
+    const spawnRate = Math.max(300, 1500 - score * 10); // Starts at 1.5s, reaches 1s at score 50, caps at 0.3s
+    const initialSpeed = 2 + score * 0.03;
+    const gravity = 0.05 + score * 0.0002;
+
     obstacleSpawnTimer += 16; // Approximate ms per frame
 
-    if (obstacleSpawnTimer > obstacleProps.spawnRate) {
+    if (obstacleSpawnTimer > spawnRate) {
         obstacleSpawnTimer = 0;
-        obstacles.push({
-            x: Math.random() * (canvas.width - obstacleProps.width),
-            y: -obstacleProps.height,
-            width: obstacleProps.width,
-            height: obstacleProps.height,
-            dy: obstacleProps.speed
-        });
+        const numToSpawn = (score > 50 && Math.random() > 0.5) ? 2 : 1; // Spawn 1 or 2 obstacles at higher scores
+
+        for (let i = 0; i < numToSpawn; i++) {
+            obstacles.push({
+                x: Math.random() * (canvas.width - obstacleProps.width),
+                y: -obstacleProps.height,
+                width: obstacleProps.width,
+                height: obstacleProps.height,
+                dy: initialSpeed
+            });
+        }
     }
 
     obstacles.forEach((obstacle, index) => {
-        obstacle.dy += obstacleProps.gravity;
+        obstacle.dy += gravity; // Apply current gravity
         obstacle.y += obstacle.dy;
 
         // Collision with player
